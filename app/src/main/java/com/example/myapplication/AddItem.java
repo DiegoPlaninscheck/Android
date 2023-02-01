@@ -23,7 +23,10 @@ public class AddItem extends AppCompatActivity {
     ImageButton addImage;
 
     ImageView imageGeted;
+
     Button buttonAdd;
+
+    Uri selectedImage;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -45,26 +48,31 @@ public class AddItem extends AppCompatActivity {
             }
         });
 
-        buttonAdd.setOnClickListener(view -> addItem());
+        buttonAdd.setOnClickListener(view -> addItem(imageGeted));
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && data != null) {
-            Uri selectedImage = data.getData();
+            selectedImage = data.getData();
             imageGeted.setImageURI(selectedImage);
         }
     }
 
-    private void addItem() {
-        Bundle bundle = getIntent().getParcelableExtra("items");
-        ArrayList<Item> items = bundle.getParcelableArrayList("items");
-        Item item = new Item(nome.getText().toString(), preco.getText().toString(), R.drawable.book);
-        items.add(item);
+    private void addItem(ImageView imageGeted) {
+        Item item = new Item(nome.getText().toString(), preco.getText().toString(), imageGeted);
+        MainActivity.items.add(item);
+
         Intent intent = new Intent(this, MainActivity.class);
-        bundle.putParcelableArrayList("itemsList", items);
-        intent.putExtra("itemsList", bundle);
-        startActivity(intent);
+        startActivityForResult(intent, 2);
+//        Bundle bundle = getIntent().getParcelableExtra("items");
+//        ArrayList<Item> items = bundle.getParcelableArrayList("items");
+//        Item item = new Item(nome.getText().toString(), preco.getText().toString(), imageGeted.getId());
+//        items.add(item);
+//        Intent intent = new Intent(this, MainActivity.class);
+//        bundle.putParcelableArrayList("itemsList", items);
+//        intent.putExtra("itemsList", bundle);
+//        startActivityForResult(intent, 2);
     }
 }

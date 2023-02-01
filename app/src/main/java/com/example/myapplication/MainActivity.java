@@ -15,8 +15,9 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
 
     private Button addButton;
-    static ArrayList<Item> items = new ArrayList<Item>();
+    public static ArrayList<Item> items = new ArrayList<Item>();
     MyAdapter adpter;
+    RecyclerView recyclerView;
 
     static {
         items.add(new Item("Teste 1", "R$150", R.drawable.book));
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         adpter = new MyAdapter(this, items, this);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        recyclerView = findViewById(R.id.recyclerview);
 
 //        Bundle bundle = getIntent().getParcelableExtra("itemsList");
 //
@@ -45,30 +46,30 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 //
 //            items = itemsList;
 //        }
-//
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adpter);
-//
+
         addButton.setOnClickListener(view -> addItem());
     }
 
     private void addItem() {
         Intent intent = new Intent(this, AddItem.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList("items", items);
-        intent.putExtra("items", bundle);
+//        Bundle bundle = new Bundle();
+//        bundle.putParcelableArrayList("items", items);
+//        intent.putExtra("items", bundle);
         startActivityForResult(intent, 1);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        adpter.notifyDataSetChanged();
+        this.recyclerView.getAdapter().notifyDataSetChanged();
     }
 
     @Override
     public void onItemLongClick(int position) {
         items.remove(position);
-        adpter.notifyItemRemoved(position);
+        this.recyclerView.getAdapter().notifyItemRemoved(position);
     }
 }

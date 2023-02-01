@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
@@ -9,11 +10,18 @@ public class Item implements Parcelable {
 
     String nome, preco;
     int image;
+    ImageView imageGeted;
 
     public Item(String nome, String preco, int image) {
         this.nome = nome;
         this.preco = preco;
         this.image = image;
+    }
+
+    public Item(String nome, String preco, ImageView imageGeted) {
+        this.nome = nome;
+        this.preco = preco;
+        this.imageGeted = imageGeted;
     }
 
     @Override
