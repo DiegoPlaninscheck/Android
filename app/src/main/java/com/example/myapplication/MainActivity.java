@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         adpter.notifyDataSetChanged();
     }
 
@@ -71,7 +70,5 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     public void onItemLongClick(int position) {
         items.remove(position);
         adpter.notifyItemRemoved(position);
-
-        System.out.println(items.toString());
     }
 }
