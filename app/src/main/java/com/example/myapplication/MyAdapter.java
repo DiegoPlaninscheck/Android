@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         myViewHolder.preco.setText(items.get(i).getPreco());
         myViewHolder.excluirItem.setImageResource(R.drawable.baseline_delete_24);
         myViewHolder.image.setImageResource(items.get(i).getImage());
+        myViewHolder.image.setImageURI(items.get(i).getImageGeted());
     }
 
     @Override
@@ -63,9 +65,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     String nome = items.get(position).getNome();
                     String preco = items.get(position).getPreco();
                     int foto = items.get(position).getImage();
+                    Uri foto2 = items.get(position).getImageGeted();
                     intent.putExtra("nome", nome);
                     intent.putExtra("preco", preco);
                     intent.putExtra("foto", foto);
+                    intent.putExtra("foto2", foto2);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }

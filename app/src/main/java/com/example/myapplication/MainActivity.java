@@ -37,16 +37,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         recyclerView = findViewById(R.id.recyclerview);
 
-//        Bundle bundle = getIntent().getParcelableExtra("itemsList");
-//
-//        if (bundle != null) {
-//            bundle = getIntent().getParcelableExtra("itemsList");
-//            ArrayList<Item> itemsList = bundle.getParcelableArrayList("itemsList");
-//            System.out.println(itemsList.toString());
-//
-//            items = itemsList;
-//        }
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adpter);
 
@@ -55,9 +45,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
     private void addItem() {
         Intent intent = new Intent(this, AddItem.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putParcelableArrayList("items", items);
-//        intent.putExtra("items", bundle);
         startActivityForResult(intent, 1);
     }
 

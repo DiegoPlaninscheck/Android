@@ -48,7 +48,7 @@ public class AddItem extends AppCompatActivity {
             }
         });
 
-        buttonAdd.setOnClickListener(view -> addItem(imageGeted));
+        buttonAdd.setOnClickListener(view -> addItem());
     }
 
     @Override
@@ -60,19 +60,11 @@ public class AddItem extends AppCompatActivity {
         }
     }
 
-    private void addItem(ImageView imageGeted) {
-        Item item = new Item(nome.getText().toString(), preco.getText().toString(), imageGeted);
+    private void addItem() {
+        Item item = new Item(nome.getText().toString(), preco.getText().toString(), selectedImage);
         MainActivity.items.add(item);
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivityForResult(intent, 2);
-//        Bundle bundle = getIntent().getParcelableExtra("items");
-//        ArrayList<Item> items = bundle.getParcelableArrayList("items");
-//        Item item = new Item(nome.getText().toString(), preco.getText().toString(), imageGeted.getId());
-//        items.add(item);
-//        Intent intent = new Intent(this, MainActivity.class);
-//        bundle.putParcelableArrayList("itemsList", items);
-//        intent.putExtra("itemsList", bundle);
-//        startActivityForResult(intent, 2);
     }
 }

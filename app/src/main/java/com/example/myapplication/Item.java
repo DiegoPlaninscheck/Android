@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.widget.ImageView;
@@ -10,7 +11,7 @@ public class Item implements Parcelable {
 
     String nome, preco;
     int image;
-    ImageView imageGeted;
+    Uri imageGeted;
 
     public Item(String nome, String preco, int image) {
         this.nome = nome;
@@ -18,7 +19,7 @@ public class Item implements Parcelable {
         this.image = image;
     }
 
-    public Item(String nome, String preco, ImageView imageGeted) {
+    public Item(String nome, String preco, Uri imageGeted) {
         this.nome = nome;
         this.preco = preco;
         this.imageGeted = imageGeted;
@@ -31,6 +32,14 @@ public class Item implements Parcelable {
                 ", preco='" + preco + '\'' +
                 ", image=" + image +
                 '}';
+    }
+
+    public Uri getImageGeted() {
+        return imageGeted;
+    }
+
+    public void setImageGeted(Uri imageGeted) {
+        this.imageGeted = imageGeted;
     }
 
     public String getPreco() {
